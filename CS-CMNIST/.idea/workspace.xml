@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="01d6e5c4-7fad-481f-a84d-c5cdad8356eb" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/DomainBed_master$mask_train.coverage" NAME="mask_train Coverage Results" MODIFIED="1611055124583" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/domainbed/scripts" />
+    <SUITE FILE_PATH="coverage/DomainBed_master$mask_analysis.coverage" NAME="mask_analysis Coverage Results" MODIFIED="1611119208483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/domainbed/scripts" />
+    <SUITE FILE_PATH="coverage/DomainBed_master$train.coverage" NAME="train Coverage Results" MODIFIED="1609898756614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/domainbed/scripts" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1933176235">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="24" />
+          <entry key="project.open.time.1" value="3" />
+          <entry key="project.open.time.12" value="3" />
+          <entry key="project.open.time.13" value="5" />
+          <entry key="project.open.time.14" value="2" />
+          <entry key="project.open.time.16" value="2" />
+          <entry key="project.open.time.17" value="3" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.2" value="3" />
+          <entry key="project.open.time.23" value="1" />
+          <entry key="project.open.time.27" value="1" />
+          <entry key="project.open.time.345" value="1" />
+          <entry key="project.open.time.5" value="3" />
+          <entry key="project.open.time.7" value="5" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="36" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="LICENSE" value="1" />
+          <entry key="done" value="1" />
+          <entry key="gitignore" value="1" />
+          <entry key="jsonl" value="1" />
+          <entry key="md" value="10" />
+          <entry key="png" value="8" />
+          <entry key="pt" value="1" />
+          <entry key="py" value="726" />
+          <entry key="sh" value="70" />
+          <entry key="txt" value="11" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Bash" value="70" />
+          <entry key="Chameleon" value="1" />
+          <entry key="Image" value="8" />
+          <entry key="Markdown" value="10" />
+          <entry key="PLAIN_TEXT" value="15" />
+          <entry key="Python" value="726" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="6" />
+          <entry key="py" value="45372" />
+          <entry key="sh" value="7020" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Bash" value="7020" />
+          <entry key="PLAIN_TEXT" value="6" />
+          <entry key="Python" value="45372" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="DomainBed-master" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domainbed/scripts/train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5412">
+              <caret line="264" column="11" selection-start-line="264" selection-start-column="11" selection-end-line="264" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domainbed/scripts/sweep_train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7414">
+              <caret line="355" column="29" selection-start-line="355" selection-start-column="29" selection-end-line="355" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/domainbed/algorithms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="695">
+              <caret line="281" selection-start-line="281" selection-end-line="281" />
+              <folding>
+                <element signature="e#72#83#0" expanded="true" />
+                <element signature="e#843#1400#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domainbed/networks.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1364">
+              <caret line="69" column="24" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../InvarianceUnitTests-master/scripts/collect_results.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1958">
+              <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domainbed/datasets.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2420">
+              <caret line="171" column="29" selection-start-line="171" selection-start-column="29" selection-end-line="171" selection-end-column="29" />
+              <folding>
+                <element signature="e#72#81#0" expanded="true" />
+                <element signature="e#1746#2454#0" />
+                <element signature="e#2707#4385#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>args.save</find>
+      <find>save</find>
+      <find>biased_places</find>
+      <find>selection_method</find>
+      <find>zhangdh</find>
+      <find>places</find>
+      <find>wide_basic</find>
+      <find>facebook</find>
+      <find>resnet1</find>
+      <find>steps</find>
+      <find>step</find>
+      <find>get</find>
+      <find>bs</find>
+      <find>n_step</find>
+      <find>fool</find>
+      <find>with_</find>
+      <find>with_no</find>
+      <find>is None</find>
+      <find>default=128</find>
+      <find>Image</find>
+      <find>input_shape</find>
+      <find>update_count</find>
+      <find>best_test_acc</find>
+      <find>start_step</find>
+      <find>checkpoint_vals</find>
+      <find>env_seed</find>
+      <find>hparams</find>
+      <find>dropout</find>
+      <find>standard_error</find>
+      <find>build_table</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>need_prune(m, name)</replace>
+      <replace>algorithm</replace>
+      <replace>model</replace>
+      <replace>m0</replace>
+      <replace />
+      <replace>a</replace>
+      <replace>m2</replace>
+      <replace>mask_model</replace>
+      <replace>m3</replace>
+      <replace>accuracy</replace>
+      <replace>self.mask_optimizer</replace>
+      <replace>algorithm4</replace>
+      <replace>minibatches</replace>
+      <replace>vrex</replace>
+      <replace>algorithm6</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/process_beluga.sh" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/prune_utils.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/mask_nofc_train.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/prune_train.py" />
+        <option value="$PROJECT_DIR$/domainbed/lib/misc.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/xyl_dataset/datasets.py" />
+        <option value="$USER_HOME$/Desktop/coco_colours.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/xyl_dataset/coco_colours.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/xyl_dataset/cocoplaces.py" />
+        <option value="$USER_HOME$/Desktop/coco_places.py" />
+        <option value="$PROJECT_DIR$/domainbed/model_selection.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/collect_results.py" />
+        <option value="$USER_HOME$/Desktop/LfF-master/data/corrupted_cifar10_protocol.py" />
+        <option value="$PROJECT_DIR$/domainbed/lib/corrupted_cifar10_protocol.py" />
+        <option value="$USER_HOME$/Desktop/xyl_domainbed/domainbed/datasets.py" />
+        <option value="$USER_HOME$/Desktop/xyl_domainbed/domainbed/algorithms.py" />
+        <option value="$PROJECT_DIR$/domainbed/xyl_datasets.py" />
+        <option value="$PROJECT_DIR$/domainbed/xyl_hparams_registry.py" />
+        <option value="$USER_HOME$/Desktop/xyl_domainbed/domainbed/scripts/train.py" />
+        <option value="$PROJECT_DIR$/domainbed/xyl_algorithms.py" />
+        <option value="$USER_HOME$/Desktop/xyl_domainbed/domainbed/lib/misc.py" />
+        <option value="$PROJECT_DIR$/domainbed/utils.py" />
+        <option value="$USER_HOME$/Desktop/xyl_domainbed/drawer_hessian.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/iterative_mask_train.py" />
+        <option value="$PROJECT_DIR$/domainbed/lib/wide_resnet.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/joint_mask_train.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/xyl_train.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/debug_train.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/sparsity_analysis.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/mask_analysis.py" />
+        <option value="$USER_HOME$/Desktop/code/domainbed/scripts/lt_joint_train.py" />
+        <option value="$USER_HOME$/Desktop/code/domainbed/scripts/mask_analysis.py" />
+        <option value="$USER_HOME$/Desktop/code/domainbed/scripts/mask_train.py" />
+        <option value="$USER_HOME$/Desktop/code/domainbed/scripts/sparsity_analysis.py" />
+        <option value="$USER_HOME$/Desktop/code/domainbed/algorithms.py" />
+        <option value="$USER_HOME$/Desktop/code/domainbed/datasets.py" />
+        <option value="$USER_HOME$/Desktop/code/domainbed/masked_model.py" />
+        <option value="$USER_HOME$/Desktop/code/domainbed/utils.py" />
+        <option value="$USER_HOME$/Desktop/code/domainbed/lib/wide_resnet.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/mask_train.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/download.py" />
+        <option value="$PROJECT_DIR$/mila_run.sh" />
+        <option value="$PROJECT_DIR$/beluga_run.sh" />
+        <option value="$PROJECT_DIR$/domainbed/masked_model.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/lt_joint_train.py" />
+        <option value="$PROJECT_DIR$/domainbed/hparams_registry.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/train.py" />
+        <option value="$PROJECT_DIR$/domainbed/datasets.py" />
+        <option value="$PROJECT_DIR$/domainbed/algorithms.py" />
+        <option value="$PROJECT_DIR$/domainbed/networks.py" />
+        <option value="$PROJECT_DIR$/domainbed/scripts/sweep_train.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state />
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="DomainBed-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DomainBed-master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DomainBed-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DomainBed-master" type="462c0819:PsiDirectoryNode" />
+              <item name="domainbed" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DomainBed-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DomainBed-master" type="462c0819:PsiDirectoryNode" />
+              <item name="domainbed" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/slurm_run/VLCS_DANN" />
+      <recent name="$PROJECT_DIR$/slurm_run" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/domainbed/scripts" />
+      <recent name="$PROJECT_DIR$/domainbed" />
+      <recent name="$PROJECT_DIR$/domainbed/lib" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.mask_analysis">
+    <configuration name="mask_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DomainBed-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/domainbed/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/domainbed/scripts/mask_analysis.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mask_train" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DomainBed-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/domainbed/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/domainbed/scripts/mask_train.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DomainBed-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/domainbed/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/domainbed/scripts/train.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.train" />
+      <item itemvalue="Python.mask_train" />
+      <item itemvalue="Python.mask_analysis" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.mask_analysis" />
+        <item itemvalue="Python.mask_train" />
+        <item itemvalue="Python.train" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="01d6e5c4-7fad-481f-a84d-c5cdad8356eb" name="Default Changelist" comment="" />
+      <created>1599543662327</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599543662327</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.59679407" visible="true" weight="0.18011527" />
+      <window_info id="Structure" order="1" sideWeight="0.40320593" side_tool="true" weight="0.17146975" />
+      <window_info id="Favorites" order="2" sideWeight="0.39556003" side_tool="true" weight="0.08993576" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32896066" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32896066" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39959636" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="File Transfer" order="9" weight="0.3198789" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.3292232" />
+      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32979852" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="R Graphics" order="3" weight="0.32976446" />
+      <window_info anchor="right" id="Remote Host" order="4" weight="0.23447537" />
+      <window_info anchor="right" id="R Packages" order="5" weight="0.3299712" />
+      <window_info anchor="right" id="SciView" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.60444" visible="true" weight="0.1509636" />
+      <window_info id="Structure" order="1" sideWeight="0.39556003" side_tool="true" weight="0.113490365" />
+      <window_info id="Favorites" order="2" sideWeight="0.39556003" side_tool="true" weight="0.08993576" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32896066" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32896066" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39959636" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="File Transfer" order="9" weight="0.32223222" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.3292232" />
+      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32979852" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="R Graphics" order="3" weight="0.32976446" />
+      <window_info anchor="right" id="Remote Host" order="4" weight="0.1745182" />
+      <window_info anchor="right" id="R Packages" order="5" weight="0.3299712" />
+      <window_info anchor="right" id="SciView" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/Desktop/new_domainbed/domainbed/hparams_registry.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/iterative_mask_train.py" />
+    <entry file="file://$PROJECT_DIR$/domainbed/lib/corrupted_cifar10_protocol.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/grad_norm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/mask_analysis2.py" />
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/save_images.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/my_sweep.py" />
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/xyl_train.py" />
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/mask_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="838" column="16" selection-start-line="838" selection-start-column="16" selection-end-line="838" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../trainable_pruning/joint_train_mask.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="71" column="49" selection-start-line="71" selection-start-column="49" selection-end-line="71" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/model_selection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="832">
+          <caret line="136" column="35" lean-forward="true" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/xyl_dataset/coco_colours.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-181">
+          <caret line="187" column="37" selection-start-line="187" selection-start-column="37" selection-end-line="187" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/collect_results.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="83" column="21" lean-forward="true" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/sparsity_analysis.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="164" column="24" selection-start-line="164" selection-start-column="24" selection-end-line="164" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/scripts/lt_joint_train.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/scripts/mask_analysis.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/scripts/mask_train.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/scripts/sparsity_analysis.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/algorithms.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/datasets.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/hparams_registry.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/grad_norm.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/masked_model.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/networks.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/lib/wide_resnet.py" />
+    <entry file="file://$USER_HOME$/Desktop/code/domainbed/utils.py" />
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/joint_mask_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/xyl_dataset/cocoplaces.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/lib/wide_resnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="712">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/command_launchers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/debug_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/process_beluga.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_erm.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/download.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="259" column="84" lean-forward="true" selection-start-line="259" selection-start-column="4" selection-end-line="259" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/lib/misc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="112" column="22" lean-forward="true" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.7/site-packages/PIL/Image.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mila_run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/mask_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="72" column="43" selection-start-line="72" selection-start-column="43" selection-end-line="72" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/beluga_run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/lt_joint_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5830">
+          <caret line="297" column="38" selection-start-line="297" selection-start-column="38" selection-end-line="297" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/masked_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1452">
+          <caret line="76" column="20" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mila_sweep_run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-416" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/sweep.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1902">
+          <caret line="66" column="7" lean-forward="true" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/hparams_registry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5412">
+          <caret line="264" column="11" selection-start-line="264" selection-start-column="11" selection-end-line="264" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/scripts/sweep_train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7414">
+          <caret line="355" column="29" selection-start-line="355" selection-start-column="29" selection-end-line="355" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/networks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1364">
+          <caret line="69" column="24" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../InvarianceUnitTests-master/scripts/collect_results.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1958">
+          <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/datasets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2420">
+          <caret line="171" column="29" selection-start-line="171" selection-start-column="29" selection-end-line="171" selection-end-column="29" />
+          <folding>
+            <element signature="e#72#81#0" expanded="true" />
+            <element signature="e#1746#2454#0" />
+            <element signature="e#2707#4385#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domainbed/algorithms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="695">
+          <caret line="281" selection-start-line="281" selection-end-line="281" />
+          <folding>
+            <element signature="e#72#83#0" expanded="true" />
+            <element signature="e#843#1400#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
