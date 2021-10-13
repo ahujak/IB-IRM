@@ -1,0 +1,524 @@
+  0%|          | 0/9912422 [00:00<?, ?it/s]  2%|1         | 176128/9912422 [00:00<00:05, 1759796.41it/s]  8%|8         | 837632/9912422 [00:00<00:01, 4613113.20it/s] 17%|#6        | 1655808/9912422 [00:00<00:01, 6234277.39it/s] 27%|##6       | 2648064/9912422 [00:00<00:00, 7682934.82it/s] 37%|###7      | 3709952/9912422 [00:00<00:00, 8734299.78it/s] 51%|#####     | 5019648/9912422 [00:00<00:00, 10215574.93it/s] 65%|######4   | 6425600/9912422 [00:00<00:00, 11418317.53it/s] 79%|#######9  | 7853056/9912422 [00:00<00:00, 12310924.14it/s] 94%|#########3| 9273344/9912422 [00:00<00:00, 12899425.99it/s]9913344it [00:00, 10447739.26it/s]                             
+  0%|          | 0/28881 [00:00<?, ?it/s]29696it [00:00, 1848284.61it/s]          
+  0%|          | 0/1648877 [00:00<?, ?it/s]  5%|5         | 87040/1648877 [00:00<00:01, 866504.52it/s] 18%|#7        | 294912/1648877 [00:00<00:00, 1564046.17it/s] 35%|###4      | 574464/1648877 [00:00<00:00, 2096135.02it/s] 52%|#####1    | 852992/1648877 [00:00<00:00, 2326044.35it/s] 73%|#######3  | 1206272/1648877 [00:00<00:00, 2753213.59it/s] 93%|#########2| 1531904/1648877 [00:00<00:00, 2913851.61it/s]1649664it [00:00, 2638476.03it/s]                             
+  0%|          | 0/4542 [00:00<?, ?it/s]5120it [00:00, 15813576.20it/s]         
+/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/datasets/mnist.py:502: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /pytorch/torch/csrc/utils/tensor_numpy.cpp:143.)
+  return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 176, in <module>
+    algorithm = algorithm_class(dataset.input_shape, dataset.num_classes,
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1249, in __init__
+    super(IB_IRM, self).__init__(input_shape, num_classes, num_domains,
+TypeError: super(type, obj): obj must be an instance or subtype of type
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1310, in update
+    
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 119, in accuracy
+    x = x.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 118, in accuracy
+    for x, y in loader:
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/fast_data_loader.py", line 70, in __iter__
+    yield next(self._infinite_iterator)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1182, in _next_data
+    idx, data = self._get_data()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1148, in _get_data
+    success, data = self._try_get_data()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 986, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/usr/lib/python3.9/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/multiprocessing/reductions.py", line 282, in rebuild_storage_fd
+    fd = df.detach()
+  File "/usr/lib/python3.9/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/usr/lib/python3.9/multiprocessing/resource_sharer.py", line 86, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 513, in Client
+    answer_challenge(c, authkey)
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 757, in answer_challenge
+    message = connection.recv_bytes(256)         # reject large message
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 221, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 419, in _recv_bytes
+    buf = self._recv(4)
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 384, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1314, in update
+    return {'loss': loss.item(), 'nll': nll.item(),
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1316, in update
+    return {'loss': loss.item(), 'nll': nll.item(),
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1295, in update
+    irn_penalty /= len(minibatches)
+UnboundLocalError: local variable 'irn_penalty' referenced before assignment
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1313, in update
+    self.optimizer.step()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/optim/optimizer.py", line 89, in wrapper
+    return func(*args, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/optim/adam.py", line 108, in step
+    F.adam(params_with_grad,
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/optim/_functional.py", line 92, in adam
+    denom = (exp_avg_sq.sqrt() / math.sqrt(bias_correction2)).add_(eps)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 121, in accuracy
+    p = network.predict(x)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 106, in predict
+    return self.network(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 145, in forward
+    x = self.bn0(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/normalization.py", line 246, in forward
+    return F.group_norm(
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/functional.py", line 2218, in group_norm
+    return torch.group_norm(input, num_groups, weight, bias, eps, torch.backends.cudnn.enabled)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1573, in update
+    >= self.hparams['ib_penalty_anneal_iters'] else
+KeyError: 'ib_penalty_anneal_iters'
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1597, in update
+    if self.update_count == self.hparams['irm_penalty_anneal_iters']:
+KeyError: 'irm_penalty_anneal_iters'
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1612, in update
+    'IRM_penalty': irm_penalty.item(), 
+NameError: name 'irm_penalty' is not defined
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 120, in accuracy
+    y = y.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1544, in update
+    self.optimizer.zero_grad()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/optim/optimizer.py", line 217, in zero_grad
+    p.grad.zero_()
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1373, in update
+    irm_penalty += self._irm_penalty(logits, y)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1343, in _irm_penalty
+    scale = torch.tensor(1.).to(device).requires_grad_()
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 211, in <module>
+    for x,y in next(train_minibatches_iterator)]
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/fast_data_loader.py", line 43, in __iter__
+    yield next(self._infinite_iterator)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1199, in _next_data
+    return self._process_data(data)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1223, in _process_data
+    self._try_put_index()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1205, in _try_put_index
+    index = self._next_index()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 508, in _next_index
+    return next(self._sampler_iter)  # may raise StopIteration
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/fast_data_loader.py", line 12, in __iter__
+    for batch in self.sampler:
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/sampler.py", line 227, in __iter__
+    for idx in self.sampler:
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/sampler.py", line 122, in __iter__
+    yield from torch.randint(high=n, size=(32,), dtype=torch.int64, generator=generator).tolist()
+KeyboardInterrupt
+  0%|          | 0/9912422 [00:00<?, ?it/s]  9%|8         | 890880/9912422 [00:00<00:01, 8887513.05it/s] 23%|##3       | 2314240/9912422 [00:00<00:00, 12003161.87it/s] 37%|###7      | 3675136/9912422 [00:00<00:00, 12733921.86it/s] 51%|#####1    | 5093376/9912422 [00:00<00:00, 13245676.61it/s] 66%|######5   | 6537216/9912422 [00:00<00:00, 13647620.21it/s] 80%|########  | 7956480/9912422 [00:00<00:00, 13817414.85it/s] 95%|#########4| 9378816/9912422 [00:00<00:00, 13947922.98it/s]9913344it [00:00, 13386809.77it/s]                             
+  0%|          | 0/28881 [00:00<?, ?it/s]29696it [00:00, 12606685.38it/s]         
+  0%|          | 0/1648877 [00:00<?, ?it/s] 49%|####9     | 814080/1648877 [00:00<00:00, 8093262.76it/s]1649664it [00:00, 10352895.88it/s]                           
+  0%|          | 0/4542 [00:00<?, ?it/s]5120it [00:00, 59322752.71it/s]         
+/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/datasets/mnist.py:502: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /pytorch/torch/csrc/utils/tensor_numpy.cpp:143.)
+  return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 120, in accuracy
+    y = y.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 146, in <module>
+    train_loaders = [InfiniteDataLoader(
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 146, in <listcomp>
+    train_loaders = [InfiniteDataLoader(
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/fast_data_loader.py", line 35, in __init__
+    self._infinite_iterator = iter(torch.utils.data.DataLoader(
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 355, in __iter__
+    return self._get_iterator()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 301, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 887, in __init__
+    self._worker_result_queue = multiprocessing_context.Queue()  # type: ignore
+  File "/usr/lib/python3.9/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+  File "/usr/lib/python3.9/multiprocessing/queues.py", line 55, in __init__
+    register_after_fork(self, Queue._after_fork)
+  File "/usr/lib/python3.9/multiprocessing/util.py", line 172, in register_after_fork
+    _afterfork_registry[(next(_afterfork_counter), id(obj), func)] = obj
+  File "/usr/lib/python3.9/weakref.py", line 165, in __setitem__
+    self.data[key] = KeyedRef(value, self._remove, key)
+  File "/usr/lib/python3.9/weakref.py", line 345, in __new__
+    def __new__(type, ob, callback, key):
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 176, in <module>
+    algorithm = algorithm_class(dataset.input_shape, dataset.num_classes,
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1411, in __init__
+    super(IB_IRM_F_C, self).__init__(input_shape, num_classes, num_domains,
+TypeError: super(type, obj): obj must be an instance or subtype of type
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 121, in accuracy
+    p = network.predict(x)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 109, in predict
+    return self.network(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 147, in forward
+    x = self.conv2(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 399, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 395, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1733, in update
+    all_features = self.featurizer(all_x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 104, in forward
+    return self.dropout(self.network(x))
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 249, in forward
+    return self._forward_impl(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 239, in _forward_impl
+    x = self.layer3(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 132, in forward
+    out = self.conv3(out)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 399, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 395, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: CUDA out of memory. Tried to allocate 74.00 MiB (GPU 0; 7.92 GiB total capacity; 6.43 GiB already allocated; 90.88 MiB free; 6.47 GiB reserved in total by PyTorch)
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1733, in update
+    all_features = self.featurizer(all_x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 105, in forward
+    return self.dropout(self.network(x))
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 249, in forward
+    return self._forward_impl(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 239, in _forward_impl
+    x = self.layer3(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 132, in forward
+    out = self.conv3(out)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 399, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 395, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: CUDA out of memory. Tried to allocate 74.00 MiB (GPU 0; 7.92 GiB total capacity; 6.43 GiB already allocated; 86.75 MiB free; 6.47 GiB reserved in total by PyTorch)
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 176, in <module>
+    algorithm = algorithm_class(dataset.input_shape, dataset.num_classes,
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1714, in __init__
+    super(IB_ERM_F_C, self).__init__(input_shape, num_classes, num_domains,
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 84, in __init__
+    self.featurizer = networks.Featurizer(input_shape, self.hparams)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 194, in Featurizer
+    return ResNet(input_shape, hparams)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 78, in __init__
+    self.network = torchvision.models.resnet50(pretrained=True)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 300, in resnet50
+    return _resnet('resnet50', Bottleneck, [3, 4, 6, 3], pretrained, progress,
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 260, in _resnet
+    model = ResNet(block, layers, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 190, in __init__
+    nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/init.py", line 413, in kaiming_normal_
+    return tensor.normal_(0, std)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1733, in update
+    all_features = self.featurizer(all_x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 104, in forward
+    return self.dropout(self.network(x))
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 249, in forward
+    return self._forward_impl(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 239, in _forward_impl
+    x = self.layer3(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 133, in forward
+    out = self.bn3(out)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 135, in forward
+    return F.batch_norm(
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/functional.py", line 2149, in batch_norm
+    return torch.batch_norm(
+RuntimeError: CUDA out of memory. Tried to allocate 74.00 MiB (GPU 0; 7.92 GiB total capacity; 6.50 GiB already allocated; 91.75 MiB free; 6.54 GiB reserved in total by PyTorch)

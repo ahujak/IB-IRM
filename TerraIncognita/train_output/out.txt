@@ -1,0 +1,2606 @@
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/train-images-idx3-ubyte.gz
+Failed to download (trying next):
+HTTP Error 503: Service Unavailable
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/train-images-idx3-ubyte.gz
+  0%|          | 0/9912422 [00:00<?, ?it/s]  2%|1         | 176128/9912422 [00:00<00:05, 1759796.41it/s]  8%|8         | 837632/9912422 [00:00<00:01, 4613113.20it/s] 17%|#6        | 1655808/9912422 [00:00<00:01, 6234277.39it/s] 27%|##6       | 2648064/9912422 [00:00<00:00, 7682934.82it/s] 37%|###7      | 3709952/9912422 [00:00<00:00, 8734299.78it/s] 51%|#####     | 5019648/9912422 [00:00<00:00, 10215574.93it/s] 65%|######4   | 6425600/9912422 [00:00<00:00, 11418317.53it/s] 79%|#######9  | 7853056/9912422 [00:00<00:00, 12310924.14it/s] 94%|#########3| 9273344/9912422 [00:00<00:00, 12899425.99it/s]9913344it [00:00, 10447739.26it/s]                             
+Extracting ./domainbed/data/MNIST/MNIST/raw/train-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/train-labels-idx1-ubyte.gz
+  0%|          | 0/28881 [00:00<?, ?it/s]29696it [00:00, 1848284.61it/s]          
+Extracting ./domainbed/data/MNIST/MNIST/raw/train-labels-idx1-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/t10k-images-idx3-ubyte.gz
+Failed to download (trying next):
+HTTP Error 503: Service Unavailable
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/t10k-images-idx3-ubyte.gz
+  0%|          | 0/1648877 [00:00<?, ?it/s]  5%|5         | 87040/1648877 [00:00<00:01, 866504.52it/s] 18%|#7        | 294912/1648877 [00:00<00:00, 1564046.17it/s] 35%|###4      | 574464/1648877 [00:00<00:00, 2096135.02it/s] 52%|#####1    | 852992/1648877 [00:00<00:00, 2326044.35it/s] 73%|#######3  | 1206272/1648877 [00:00<00:00, 2753213.59it/s] 93%|#########2| 1531904/1648877 [00:00<00:00, 2913851.61it/s]1649664it [00:00, 2638476.03it/s]                             
+Extracting ./domainbed/data/MNIST/MNIST/raw/t10k-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/t10k-labels-idx1-ubyte.gz
+  0%|          | 0/4542 [00:00<?, ?it/s]5120it [00:00, 15813576.20it/s]         
+Extracting ./domainbed/data/MNIST/MNIST/raw/t10k-labels-idx1-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw
+
+Processing...
+/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/datasets/mnist.py:502: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /pytorch/torch/csrc/utils/tensor_numpy.cpp:143.)
+  return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
+Done!
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 176, in <module>
+    algorithm = algorithm_class(dataset.input_shape, dataset.num_classes,
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1249, in __init__
+    super(IB_IRM, self).__init__(input_shape, num_classes, num_domains,
+TypeError: super(type, obj): obj must be an instance or subtype of type
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           penalty       step          step_time    
+0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945776939  0.7734665275  0.0104469042  0             0.0431816578 
+0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4761016339  0.1987304688  0.4516306961  0.0244709375  100           0.0242010999 
+0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.6857020410  0.4288309091  0.1987304688  0.4215800130  0.0072508974  200           0.0238062620 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1310, in update
+    
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+torch.Size([128, 128])
+torch.Size([128, 2])
+torch.Size([128, 128])
+torch.Size([128, 2])
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 119, in accuracy
+    x = x.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+torch.Size([128, 128])
+torch.Size([128, 2])
+torch.Size([64, 2])
+torch.Size([128, 128])
+torch.Size([128, 2])
+torch.Size([64, 2])
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 118, in accuracy
+    for x, y in loader:
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/fast_data_loader.py", line 70, in __iter__
+    yield next(self._infinite_iterator)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1182, in _next_data
+    idx, data = self._get_data()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1148, in _get_data
+    success, data = self._try_get_data()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 986, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/usr/lib/python3.9/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/multiprocessing/reductions.py", line 282, in rebuild_storage_fd
+    fd = df.detach()
+  File "/usr/lib/python3.9/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/usr/lib/python3.9/multiprocessing/resource_sharer.py", line 86, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 513, in Client
+    answer_challenge(c, authkey)
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 757, in answer_challenge
+    message = connection.recv_bytes(256)         # reject large message
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 221, in recv_bytes
+    buf = self._recv_bytes(maxlength)
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 419, in _recv_bytes
+    buf = self._recv(4)
+  File "/usr/lib/python3.9/multiprocessing/connection.py", line 384, in _recv
+    chunk = read(handle, remaining)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+torch.Size([128, 128])
+torch.Size([128, 2])
+torch.Size([64, 2])
+torch.Size([64, 128])
+torch.Size([128, 128])
+torch.Size([128, 2])
+torch.Size([64, 2])
+torch.Size([64, 128])
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+tensor(0.0312, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.0600, device='cuda:0', grad_fn=<AddBackward0>)
+env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           penalty       step          step_time    
+0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945781708  0.7734665275  0.0104469042  0             0.0421643257 
+tensor(0.0689, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1354, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.0755, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1445, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1532, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.3071, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1395, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2831, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1351, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2745, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1205, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2428, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1181, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2393, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1180, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2365, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1207, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2463, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1223, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2507, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1222, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2501, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1276, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2547, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1347, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2588, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1303, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2667, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1335, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2691, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1348, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2746, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1356, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2794, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1432, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2817, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1436, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2823, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1445, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2887, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1499, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2903, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1403, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2879, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1435, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2886, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1431, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2781, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1510, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2999, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1467, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2943, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1565, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.3044, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1517, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2993, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1345, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2723, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1410, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2805, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1471, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2880, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1414, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2863, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1470, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2894, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1390, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2791, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1410, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2791, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1455, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2792, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1407, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2866, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1478, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2941, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1366, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2755, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1377, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2774, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1378, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2756, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1475, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2992, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1514, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2982, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1369, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2797, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1456, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2950, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1494, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2997, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1505, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.3000, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1474, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2962, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1463, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2988, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1540, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2992, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1540, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.3104, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1530, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.3054, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1500, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.3023, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1485, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2930, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1511, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2970, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1491, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2944, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1443, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2892, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1480, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2975, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1512, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.3038, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1490, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.3016, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1453, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2845, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1431, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2834, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1544, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.3004, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1470, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2906, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1399, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2900, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1502, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.2941, device='cuda:0', grad_fn=<AddBackward0>)
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1314, in update
+    return {'loss': loss.item(), 'nll': nll.item(),
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+tensor(0.0312, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.0301, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.0600, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.0301, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           penalty       step          step_time    
+0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945781708  0.7734665275  0.0104469042  0             0.0336098671 
+tensor(0.0689, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.0676, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1354, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.0676, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.0755, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.0717, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1445, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.0717, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1532, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1572, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3071, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1572, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1395, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1404, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2831, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1404, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1351, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1364, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2745, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1364, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1205, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1212, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2428, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1212, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1181, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1191, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2393, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1191, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1180, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1174, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2365, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1174, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1207, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1222, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2463, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1222, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1223, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1248, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2507, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1248, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1222, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1275, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2501, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1275, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1276, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1265, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2547, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1265, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1347, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1296, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2588, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1296, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1303, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1355, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2667, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1355, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1335, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1359, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2691, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1359, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1348, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1383, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2746, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1383, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1356, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1387, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2794, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1387, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1432, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1400, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2817, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1400, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1436, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1416, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2823, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1416, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1445, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1434, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2887, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1434, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1499, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1475, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2903, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1475, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1403, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1453, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2879, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1453, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1435, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1440, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2886, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1440, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1431, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1428, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2781, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1428, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1510, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1496, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2999, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1496, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1467, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1460, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2943, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1460, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1565, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1511, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3044, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1511, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1517, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1486, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2993, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1486, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1345, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1395, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2723, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1395, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1410, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1409, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2805, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1409, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1471, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1435, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2880, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1435, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1414, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1420, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2863, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1420, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1470, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1443, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2894, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1443, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1390, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1387, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2791, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1387, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1410, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1400, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2791, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1400, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1455, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1405, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2792, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1405, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1407, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1422, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2866, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1422, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1478, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1460, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2941, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1460, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1366, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1367, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2755, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1367, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1377, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1380, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2774, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1380, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1378, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1414, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2756, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1414, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1475, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1485, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2992, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1485, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1514, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1488, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2982, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1488, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1369, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1410, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2797, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1410, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1456, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1464, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2950, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1464, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1494, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1488, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2997, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1488, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1505, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1489, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3000, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1489, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1474, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1473, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2962, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1473, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1463, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1513, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2988, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1513, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1540, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1514, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2992, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1514, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1540, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1543, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3104, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1543, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1530, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1517, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3054, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1517, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1500, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1503, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3023, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1503, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1485, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1477, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2930, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1477, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1511, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1483, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2970, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1483, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1491, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1460, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2944, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1460, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1443, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1446, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2892, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1446, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1480, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1476, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2975, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1476, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1512, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1509, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3038, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1509, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1490, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1498, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3016, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1498, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1453, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1411, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2845, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1411, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1431, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1422, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2834, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1422, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1544, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1491, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3004, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1491, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1470, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1442, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2906, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1442, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1399, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1440, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2900, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1440, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1502, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1462, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2941, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1462, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1432, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1443, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2903, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1443, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1494, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1469, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2957, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1469, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1456, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1423, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2867, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1423, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1507, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1468, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2944, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1468, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1438, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1379, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2778, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1379, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1465, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1409, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2813, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1409, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1540, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1545, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3104, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1545, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1481, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1489, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2993, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1489, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1458, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1451, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.2921, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1451, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1603, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1586, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3192, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1586, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1554, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1555, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3118, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1555, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1595, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1573, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3168, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1573, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1592, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1610, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3237, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1610, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.1600, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1607, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+tensor(0.3212, device='cuda:0', grad_fn=<AddBackward0>)
+tensor(0.1607, device='cuda:0', grad_fn=<MeanBackward0>)
+....
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1316, in update
+    return {'loss': loss.item(), 'nll': nll.item(),
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1295, in update
+    irn_penalty /= len(minibatches)
+UnboundLocalError: local variable 'irn_penalty' referenced before assignment
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0299836528  0.0104469042  0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945772171  0.7839134336  0             0.0323476791 
+0.1445207781  0.0244709375  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4761016339  0.1987299919  0.4761016339  100           0.0239988732 
+0.1571139814  0.0072508974  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.6857020410  0.4288309091  0.1987299919  0.4288309091  200           0.0234408379 
+0.1603430605  0.0071251712  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.0285530616  0.4326679125  0.1987299919  0.4326679125  300           0.0241790223 
+0.1634070788  0.0062613590  0.8981679880  0.8960565795  0.7967000589  0.8066866695  0.0986768093  0.0936562366  1.3714040821  0.4357450593  0.1987299919  0.4357450593  400           0.0239972448 
+0.1509785230  0.0055268978  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.7142551026  0.5881385323  0.1987299919  0.5881385323  500           0.0235195899 
+0.0019329698  0.0002776913  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  2.0571061231  0.9021233636  0.1987299919  0.9021233636  600           0.0240950990 
+0.0001298566  0.0000318903  0.5079280051  0.5068581226  0.5050624096  0.5092156022  0.4920983554  0.4937848264  2.3999571436  0.7042112756  0.1987299919  0.7042112756  700           0.0241710043 
+0.0000730859  0.0000344889  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  2.7428081641  0.6987220258  0.1987299919  0.6987220258  800           0.0242472696 
+0.0000893606  0.0001217369  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  3.0856591847  0.7074679106  0.1987299919  0.7074679106  900           0.0242878413 
+0.0000497068  0.0000305610  0.5285515320  0.5257179597  0.5214014035  0.5246463781  0.4934911877  0.4976425204  3.4285102052  0.6960043901  0.1987299919  0.6960043901  1000          0.0245724034 
+0.0000201499  0.0000167918  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  3.7713612257  0.6926225644  0.1987299919  0.6926225644  1100          0.0243925166 
+0.0000396415  0.0000636225  0.5107135205  0.5090012859  0.5107408796  0.5049292756  0.4928483420  0.4912130304  4.1142122462  0.6984271115  0.1987299919  0.6984271115  1200          0.0245380640 
+0.0000178112  0.0000229489  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  4.4570632667  0.6925075209  0.1987299919  0.6925075209  1300          0.0245307231 
+0.0000148734  0.0000209894  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  4.7999142872  0.6921793383  0.1987299919  0.6921793383  1400          0.0239421749 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1313, in update
+    self.optimizer.step()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/optim/optimizer.py", line 89, in wrapper
+    return func(*args, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/optim/adam.py", line 108, in step
+    F.adam(params_with_grad,
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/optim/_functional.py", line 92, in adam
+    denom = (exp_avg_sq.sqrt() / math.sqrt(bias_correction2)).add_(eps)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_L_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0108147450  0.0104469042  0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945772171  0.7839134336  0             0.0303602219 
+0.7164430928  0.0244709375  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4761016339  0.1987299919  0.4761016339  100           0.0238737297 
+0.7380706537  0.0072508974  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.6857020410  0.4288309091  0.1987299919  0.4288309091  200           0.0238273382 
+0.7238685203  0.0071251712  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.0285530616  0.4326679125  0.1987299919  0.4326679125  300           0.0242088079 
+0.6997898543  0.0062613590  0.8981679880  0.8960565795  0.7967000589  0.8066866695  0.0986768093  0.0936562366  1.3714040821  0.4357450593  0.1987299919  0.4357450593  400           0.0248963022 
+0.7060386205  0.0055268978  0.8576173130  0.8559794256  0.7718969304  0.7826832405  0.1802646381  0.1838834119  1.7142551026  1.2007863137  0.1987299919  1.2007863137  500           0.0240434456 
+0.0032780765  0.0035674126  0.4972144847  0.4976425204  0.4997053624  0.4952850407  0.4965982750  0.4946420917  2.0571061231  1.3798070639  0.1987299919  1.3798070639  600           0.0240278482 
+0.0000410733  0.0000039491  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  2.3999571436  0.6961051679  0.1987299919  0.6961051679  700           0.0242066932 
+0.0000173624  0.0000038497  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  2.7428081641  0.6935150683  0.1987299919  0.6935150683  800           0.0238418651 
+0.0000129135  0.0000027687  0.5313370474  0.5347192456  0.5277227192  0.5180025718  0.4866877377  0.4817831119  3.0856591847  0.6930607718  0.1987299919  0.6930607718  900           0.0237118244 
+0.0000106245  0.0000034237  0.7041461324  0.6960994428  0.6590239460  0.6566652379  0.3565650613  0.3546935276  3.4285102052  0.6928828019  0.1987299919  0.6928828019  1000          0.0243951535 
+0.0000091990  0.0000031256  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  3.7713612257  0.6926117653  0.1987299919  0.6926117653  1100          0.0248063397 
+0.0000097957  0.0000038508  0.7748553675  0.7741105872  0.7248620560  0.7237462495  0.3367975572  0.3371195885  4.1142122462  0.6928597778  0.1987299919  0.6928597778  1200          0.0243484449 
+0.0000083281  0.0000027245  0.7455003214  0.7421774539  0.6966839878  0.6937419631  0.3679220014  0.3681954565  4.4570632667  0.6926277256  0.1987299919  0.6926277256  1300          0.0240160036 
+0.0000087961  0.0000033404  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  4.7999142872  0.6926711375  0.1987299919  0.6926711375  1400          0.0247933745 
+0.0000078754  0.0000029540  0.8307263767  0.8264037720  0.7572721916  0.7591084441  0.2427278084  0.2400342906  5.1427653078  0.6925599289  0.1987299919  0.6925599289  1500          0.0242325115 
+0.0000083220  0.0000034906  0.4988750804  0.4984997857  0.5008839128  0.4959279897  0.4956340065  0.4948564081  5.4856163283  0.6926328421  0.1987299919  0.6926328421  1600          0.0245301199 
+0.0000072060  0.0000029575  0.7996571673  0.8013287613  0.7402903520  0.7473210459  0.2956554347  0.2923274754  5.8284673488  0.6925085169  0.1987299919  0.6925085169  1700          0.0248641467 
+0.0000126910  0.0000051584  0.7105206771  0.7098156880  0.6690416243  0.6675953708  0.3770825521  0.3744106301  6.1713183693  0.6932370800  0.1987299919  0.6932370800  1800          0.0248247910 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_L_NC
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0150720924  0.0104469042  0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945772171  0.7839134336  0             0.0309326649 
+0.0721395973  0.0244709375  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4761016339  0.1987299919  0.4761016339  100           0.0242345190 
+0.0786045992  0.0072508974  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.6857020410  0.4288309091  0.1987299919  0.4288309091  200           0.0246039939 
+0.0802093457  0.0071251712  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.0285530616  0.4326679125  0.1987299919  0.4326679125  300           0.0238769937 
+0.0817677866  0.0062613590  0.8981679880  0.8960565795  0.7967000589  0.8066866695  0.0986768093  0.0936562366  1.3714040821  0.4357450593  0.1987299919  0.4357450593  400           0.0233980608 
+0.0754370970  0.0055268978  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.7142551026  0.5152283093  0.1987299919  0.5152283093  500           0.0250017571 
+0.0014761494  0.0038005461  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  2.0571061231  1.2043172121  0.1987299919  1.2043172121  600           0.0253235507 
+0.0003786304  0.0000739375  0.5184272552  0.5167166738  0.5170086248  0.5126446635  0.4866877377  0.4862837548  2.3999571436  0.7260927135  0.1987299919  0.7260927135  700           0.0249014139 
+0.0001338378  0.0000621254  0.5281229912  0.5252893270  0.5248834842  0.5207886841  0.4824556704  0.4813544792  2.7428081641  0.7064609897  0.1987299919  0.7064609897  800           0.0235192657 
+0.0001207753  0.0001320026  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  3.0856591847  0.7091811907  0.1987299919  0.7091811907  900           0.0239437890 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_NC
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0150720924  0.0104469042  0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945772171  0.7839134336  0             0.0324559212 
+0.0721395973  0.0244709375  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4761016339  0.1987299919  0.4761016339  100           0.0239581132 
+0.0786045992  0.0072508974  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.6857020410  0.4288309091  0.1987299919  0.4288309091  200           0.0239308691 
+0.0802093457  0.0071251712  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.0285530616  0.4326679125  0.1987299919  0.4326679125  300           0.0238653898 
+0.0817677866  0.0062613590  0.8981679880  0.8960565795  0.7967000589  0.8066866695  0.0986768093  0.0936562366  1.3714040821  0.4357450593  0.1987299919  0.4357450593  400           0.0239112473 
+0.0754370970  0.0055268978  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.7142551026  0.5152283093  0.1987299919  0.5152283093  500           0.0245230293 
+0.0014761494  0.0038005461  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  2.0571061231  1.2043172121  0.1987299919  1.2043172121  600           0.0243290210 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 121, in accuracy
+    p = network.predict(x)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 106, in predict
+    return self.network(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 145, in forward
+    x = self.bn0(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/normalization.py", line 246, in forward
+    return F.group_norm(
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/functional.py", line 2218, in group_norm
+    return torch.group_norm(input, num_groups, weight, bias, eps, torch.backends.cudnn.enabled)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_L_NC
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0054537114  0.0104469042  0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945772171  0.7839134336  0             0.0325596333 
+0.3578095511  0.0244709375  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4761016339  0.1987299919  0.4761016339  100           0.0243984199 
+0.3692698997  0.0072508974  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.6857020410  0.4288309091  0.1987299919  0.4288309091  200           0.0248300028 
+0.3621738285  0.0071251712  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.0285530616  0.4326679125  0.1987299919  0.4326679125  300           0.0238527584 
+0.3502192062  0.0062613590  0.8981679880  0.8960565795  0.7967000589  0.8066866695  0.0986768093  0.0936562366  1.3714040821  0.4357450593  0.1987299919  0.4357450593  400           0.0240611339 
+0.3527637009  0.0055268978  0.8588493679  0.8561937420  0.7727540580  0.7835405058  0.1788718059  0.1813116159  1.7142551026  0.8216088006  0.1987299919  0.8216088006  500           0.0240808725 
+0.0016855910  0.0029323377  0.4972144847  0.4976425204  0.4997053624  0.4952850407  0.4964375636  0.4946420917  2.0571061231  1.1539440119  0.1987299919  1.1539440119  600           0.0240250039 
+0.0000357189  0.0000104113  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4942134591  2.3999571436  0.6951541072  0.1987299919  0.6951541072  700           0.0258588910 
+0.0000169094  0.0000085737  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  2.7428081641  0.6931074172  0.1987299919  0.6931074172  800           0.0236717224 
+0.0000181061  0.0000084093  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  3.0856591847  0.6932721364  0.1987299919  0.6932721364  900           0.0238865733 
+0.0000150458  0.0000116416  0.7170559246  0.7091727390  0.6711844431  0.6699528504  0.3762254245  0.3651950279  3.4285102052  0.6932578319  0.1987299919  0.6932578319  1000          0.0238002634 
+0.0000085841  0.0000069373  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  3.7713612257  0.6921143907  0.1987299919  0.6921143907  1100          0.0237361288 
+0.0000091941  0.0000076387  0.8749732162  0.8733390484  0.7850216960  0.7908272610  0.1670327316  0.1688812688  4.1142122462  0.6923254949  0.1987299919  0.6923254949  1200          0.0241405678 
+0.0000079487  0.0000062606  0.7955324620  0.7961851693  0.7322012107  0.7308186884  0.3178336101  0.3244749250  4.4570632667  0.6921157324  0.1987299919  0.6921157324  1300          0.0241265726 
+0.0000107439  0.0000088648  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  4.7999142872  0.6925917149  0.1987299919  0.6925917149  1400          0.0238849497 
+0.0000075599  0.0000065374  0.7851939147  0.7871838834  0.7252906198  0.7239605658  0.3250656238  0.3279039863  5.1427653078  0.6920372015  0.1987299919  0.6920372015  1500          0.0238831878 
+0.0000083770  0.0000077061  0.4973751875  0.4976425204  0.4998125033  0.4954993571  0.4964375636  0.4939991427  5.4856163283  0.6921946746  0.1987299919  0.6921946746  1600          0.0237212133 
+0.0000074607  0.0000066469  0.8964538247  0.8947706815  0.7960572133  0.8056150879  0.1036052928  0.0987998285  5.8284673488  0.6920913273  0.1987299919  0.6920913273  1700          0.0241413426 
+0.0000157991  0.0000124643  0.8944182558  0.8915559366  0.7954143676  0.8041148736  0.1091230514  0.1054436348  6.1713183693  0.6934180766  0.1987299919  0.6934180766  1800          0.0239825988 
+0.0000076348  0.0000066005  0.7876044568  0.7833261895  0.7229335190  0.7314616374  0.3099587507  0.3043291899  6.5141693898  0.6920824182  0.1987299919  0.6920824182  1900          0.0237573266 
+0.0000074585  0.0000068249  0.4987143775  0.4987141020  0.5005089195  0.4957136734  0.4960089998  0.4939991427  6.8570204103  0.6920908290  0.1987299919  0.6920908290  2000          0.0238782787 
+0.0000079363  0.0000074590  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  7.1998714309  0.6922196651  0.1987299919  0.6922196651  2100          0.0247941113 
+0.0000087837  0.0000064707  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  7.5427224514  0.6921907800  0.1987299919  0.6921907800  2200          0.0246683002 
+0.0000502970  0.0000152140  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  7.8855734719  0.6967771351  0.1987299919  0.6967771351  2300          0.0247124600 
+0.0000108854  0.0000086326  0.4965716735  0.4974282040  0.4998125033  0.4954993571  0.5006160604  0.4987141020  8.2284244924  0.6926091194  0.1987299919  0.6926091194  2400          0.0237349749 
+0.0000081736  0.0000068727  0.5572101993  0.5604372053  0.5502758879  0.5396485212  0.4772593347  0.4714959280  8.5712755129  0.6921494067  0.1987299919  0.6921494067  2500          0.0237301946 
+0.0000131455  0.0000123170  0.6999678594  0.6969567081  0.6659881074  0.6643806258  0.4082069963  0.4009858551  8.9141265335  0.6930684227  0.1987299919  0.6930684227  2600          0.0236775160 
+0.0000124390  0.0000090500  0.4972680523  0.4978568367  0.4996517919  0.4954993571  0.4962768522  0.4939991427  9.2569775540  0.6927848440  0.1987299919  0.6927848440  2700          0.0237915516 
+0.0000103711  0.0000078610  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  9.5998285745  0.6925237459  0.1987299919  0.6925237459  2800          0.0237407851 
+0.0000278797  0.0000149461  0.6082065567  0.6088726961  0.5946322387  0.5902271753  0.5241870681  0.5199314188  9.9426795950  0.6950386065  0.1987299919  0.6950386065  2900          0.0239686871 
+0.0000077429  0.0000074327  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  10.285530615  0.6921214998  0.1987299919  0.6921214998  3000          0.0236873055 
+0.0000091919  0.0000081367  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  10.628381636  0.6924547786  0.1987299919  0.6924547786  3100          0.0236548591 
+0.0000128078  0.0000120964  0.8810799229  0.8801971710  0.7868966626  0.7906129447  0.1284084213  0.1279468495  10.971232656  0.6930795687  0.1987299919  0.6930795687  3200          0.0237068272 
+0.0000224864  0.0000140651  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  11.314083677  0.6943988180  0.1987299919  0.6943988180  3300          0.0238094711 
+0.0000321930  0.0000276573  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  11.656934697  0.6964356804  0.1987299919  0.6964356804  3400          0.0248294187 
+0.0000173888  0.0000102480  0.4972680523  0.4976425204  0.4997589329  0.4954993571  0.4963304227  0.4939991427  11.999785718  0.6932218426  0.1987299919  0.6932218426  3500          0.0241608667 
+0.0000084251  0.0000079293  0.8979537176  0.8960565795  0.7965929180  0.8066866695  0.0987839503  0.0940848693  12.342636738  0.6923257869  0.1987299919  0.6923257869  3600          0.0242091966 
+0.0000091719  0.0000088890  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  12.685487759  0.6924071771  0.1987299919  0.6924071771  3700          0.0238550973 
+0.0000093019  0.0000077332  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  13.028338779  0.6923007005  0.1987299919  0.6923007005  3800          0.0238094234 
+0.0000154664  0.0000101596  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  13.371189800  0.6931253582  0.1987299919  0.6931253582  3900          0.0237393856 
+0.0000234911  0.0000188881  0.4972680523  0.4978568367  0.4997589329  0.4957136734  0.4963839931  0.4935705101  13.714040820  0.6949084461  0.1987299919  0.6949084461  4000          0.0237218356 
+0.0000117761  0.0000119354  0.8945253910  0.8941277325  0.7950929448  0.8026146592  0.1060695345  0.1030861552  14.056891841  0.6930023116  0.1987299919  0.6930023116  4100          0.0237228394 
+0.0000171356  0.0000142038  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  14.399742861  0.6937112778  0.1987299919  0.6937112778  4200          0.0236179757 
+0.0000207128  0.0000143821  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  14.742593882  0.6941027516  0.1987299919  0.6941027516  4300          0.0238586020 
+0.0000098817  0.0000060856  0.8980608528  0.8960565795  0.7965393475  0.8066866695  0.0990518026  0.0940848693  15.085444902  0.6923663616  0.1987299919  0.6923663616  4400          0.0238081765 
+0.0000107488  0.0000073107  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  15.428295923  0.6924224281  0.1987299919  0.6924224281  4500          0.0237927008 
+0.0000298893  0.0000153972  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  15.771146943  0.6952637583  0.1987299919  0.6952637583  4600          0.0238411140 
+0.0000096688  0.0000088384  0.5027855153  0.5025717960  0.5004017785  0.5049292756  0.5035624364  0.5060008573  16.113997964  0.6925147682  0.1987299919  0.6925147682  4700          0.0241865396 
+0.0000105852  0.0000061131  0.8719734305  0.8692670381  0.7860931055  0.7976853836  0.1808003429  0.1776682383  16.456848984  0.6925209761  0.1987299919  0.6925209761  4800          0.0235929418 
+0.0000094224  0.0000064541  0.5027319477  0.5023574796  0.5003482081  0.5047149593  0.5036160069  0.5060008573  16.799700005  0.6922634566  0.1987299919  0.6922634566  4900          0.0247857714 
+0.0000135984  0.0000092516  0.5486393829  0.5507929704  0.5411153372  0.5480068581  0.4908126641  0.4950707244  17.142551025  0.6930758518  0.1987299919  0.6930758518  5000          0.0242800570 
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1573, in update
+    >= self.hparams['ib_penalty_anneal_iters'] else
+KeyError: 'ib_penalty_anneal_iters'
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1597, in update
+    if self.update_count == self.hparams['irm_penalty_anneal_iters']:
+KeyError: 'irm_penalty_anneal_iters'
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1612, in update
+    'IRM_penalty': irm_penalty.item(), 
+NameError: name 'irm_penalty' is not defined
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0299836528  0.8285301050  0.8321903129  0.7446295602  0.7462494642  0.1489259120  0.1423060437  0.0000000000  0.7734665275  0.1945748329  0.7734665275  0             0.0303413868 
+0.1557549661  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4499962178  0.1987276077  0.4499962178  100           0.0215590668 
+0.1647197063  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.6857020410  0.4212455764  0.1987276077  0.4212455764  200           0.0217241621 
+0.1660676655  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.0285530616  0.4240922558  0.1987276077  0.4240922558  300           0.0217982411 
+0.1596135032  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.3714040821  0.4277149960  0.1987276077  0.4277149960  400           0.0228673029 
+0.1385114545  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  1.7142551026  0.5546781564  0.1987276077  0.5546781564  500           0.0218023396 
+0.0020016245  0.8978465824  0.8956279468  0.7963250656  0.8069009859  0.0994267960  0.0951564509  2.0571061231  0.8647807562  0.1987276077  0.8647807562  600           0.0219182444 
+0.0004972652  0.8981679880  0.8960565795  0.7967000589  0.8066866695  0.0987303798  0.0936562366  2.3999571436  0.6509046853  0.1987276077  0.6509046853  700           0.0217058158 
+0.0006129540  0.8980072852  0.8958422632  0.7963786361  0.8066866695  0.1000696416  0.0951564509  2.7428081641  0.6086284125  0.1987276077  0.6086284125  800           0.0218229985 
+0.0006733557  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0987303798  0.0942991856  3.0856591847  0.5652487415  0.1987276077  0.5652487415  900           0.0230137634 
+0.0006601822  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  3.4285102052  0.5466895896  0.1987276077  0.5466895896  1000          0.0230818677 
+0.0006406083  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  3.7713612257  0.5182437760  0.1987276077  0.5182437760  1100          0.0230443454 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_L_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0108147450  0.8285301050  0.8321903129  0.7446295602  0.7462494642  0.1489259120  0.1423060437  0.0000000000  0.7734665275  0.1945748329  0.7734665275  0             0.0278460979 
+0.7596148014  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4499962178  0.1987276077  0.4499962178  100           0.0222614717 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 120, in accuracy
+    y = y.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_L_NC
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0054537114  0.8285301050  0.8321903129  0.7446295602  0.7462494642  0.1489259120  0.1423060437  0.0000000000  0.7734665275  0.1945748329  0.7734665275  0             0.0269424915 
+0.3793373984  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4499962178  0.1987276077  0.4499962178  100           0.0222301960 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_F_NC
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0150720924  0.8285301050  0.8321903129  0.7446295602  0.7462494642  0.1489259120  0.1423060437  0.0000000000  0.7734665275  0.1945748329  0.7734665275  0             0.0283060074 
+0.0777471679  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4499962178  0.1987276077  0.4499962178  100           0.0221004701 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_NC
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0150720924  0.0104469042  0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945772171  0.7839134336  0             0.0291922092 
+0.0721395973  0.0244709375  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4761016339  0.1987299919  0.4761016339  100           0.0238943815 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_L_NC
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0054537114  0.0208938085  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  0.0000000000  0.7943603396  0.1945772171  0.7943603396  0             0.0304944515 
+0.3461196929  0.0475991391  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.5015760764  0.1987299919  0.5015760764  100           0.0239346290 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1544, in update
+    self.optimizer.zero_grad()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/optim/optimizer.py", line 217, in zero_grad
+    p.grad.zero_()
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_L_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0108147450  0.0104469042  0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945772171  0.7839134336  0             0.0266978741 
+0.7164430928  0.0244709375  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4761016339  0.1987299919  0.4761016339  100           0.0242526841 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1373, in update
+    irm_penalty += self._irm_penalty(logits, y)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1343, in _irm_penalty
+    scale = torch.tensor(1.).to(device).requires_grad_()
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [2]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0299836528  0.0104469042  0.5110884937  0.5107158165  0.5091337655  0.5021431633  0.4854020464  0.4787826832  0.0000000000  0.7839134336  0.1945772171  0.7839134336  0             0.0316090584 
+0.1445207781  0.0244709375  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.3428510205  0.4761016339  0.1987299919  0.4761016339  100           0.0240980101 
+0.1571139814  0.0072508974  0.8982215556  0.8960565795  0.7967000589  0.8066866695  0.0986232389  0.0936562366  0.6857020410  0.4288309091  0.1987299919  0.4288309091  200           0.0240957117 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 211, in <module>
+    for x,y in next(train_minibatches_iterator)]
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/fast_data_loader.py", line 43, in __iter__
+    yield next(self._infinite_iterator)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 517, in __next__
+    data = self._next_data()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1199, in _next_data
+    return self._process_data(data)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1223, in _process_data
+    self._try_put_index()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1205, in _try_put_index
+    index = self._next_index()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 508, in _next_index
+    return next(self._sampler_iter)  # may raise StopIteration
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/fast_data_loader.py", line 12, in __iter__
+    for batch in self.sampler:
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/sampler.py", line 227, in __iter__
+    for idx in self.sampler:
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/sampler.py", line 122, in __iter__
+    yield from torch.randint(high=n, size=(32,), dtype=torch.int64, generator=generator).tolist()
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [3]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/train-images-idx3-ubyte.gz
+  0%|          | 0/9912422 [00:00<?, ?it/s]  9%|8         | 890880/9912422 [00:00<00:01, 8887513.05it/s] 23%|##3       | 2314240/9912422 [00:00<00:00, 12003161.87it/s] 37%|###7      | 3675136/9912422 [00:00<00:00, 12733921.86it/s] 51%|#####1    | 5093376/9912422 [00:00<00:00, 13245676.61it/s] 66%|######5   | 6537216/9912422 [00:00<00:00, 13647620.21it/s] 80%|########  | 7956480/9912422 [00:00<00:00, 13817414.85it/s] 95%|#########4| 9378816/9912422 [00:00<00:00, 13947922.98it/s]9913344it [00:00, 13386809.77it/s]                             
+Extracting ./domainbed/data/MNIST/MNIST/raw/train-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/train-labels-idx1-ubyte.gz
+  0%|          | 0/28881 [00:00<?, ?it/s]29696it [00:00, 12606685.38it/s]         
+Extracting ./domainbed/data/MNIST/MNIST/raw/train-labels-idx1-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/t10k-images-idx3-ubyte.gz
+  0%|          | 0/1648877 [00:00<?, ?it/s] 49%|####9     | 814080/1648877 [00:00<00:00, 8093262.76it/s]1649664it [00:00, 10352895.88it/s]                           
+Extracting ./domainbed/data/MNIST/MNIST/raw/t10k-images-idx3-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw/t10k-labels-idx1-ubyte.gz
+  0%|          | 0/4542 [00:00<?, ?it/s]5120it [00:00, 59322752.71it/s]         
+Extracting ./domainbed/data/MNIST/MNIST/raw/t10k-labels-idx1-ubyte.gz to ./domainbed/data/MNIST/MNIST/raw
+
+Processing...
+/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/datasets/mnist.py:502: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /pytorch/torch/csrc/utils/tensor_numpy.cpp:143.)
+  return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
+Done!
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0262885299  0.0006425416  0.8255838869  0.8255465066  0.7452188354  0.7591084441  0.1936036856  0.1881697385  0.0000000000  0.6779402494  0.2916364670  0.6779402494  0             0.0652956963 
+0.0144424016  0.0210689630  0.7888365117  0.7807543935  0.7181121766  0.7411058723  0.2638881449  0.2629661380  0.3428510205  0.7153100723  0.2957892418  0.7153100723  100           0.0348774099 
+0.0135092315  0.0052553583  0.8841332762  0.8827689670  0.7905394547  0.7991855979  0.1381582472  0.1326618088  0.6857020410  0.6783126086  0.2957892418  0.6783126086  200           0.0342625403 
+0.0134732066  0.0052096806  0.8369402186  0.8411915988  0.7660577490  0.7760394342  0.2774950447  0.2852550364  1.0285530616  0.6700009364  0.2957892418  0.6700009364  300           0.0343927836 
+0.0156479860  0.0050557696  0.6748982216  0.6712387484  0.6555418653  0.6558079726  0.5273477259  0.5261465924  1.3714040821  0.6453736985  0.2957892418  0.6453736985  400           0.0352459979 
+0.0240879015  0.0039454295  0.6617741590  0.6590227175  0.6619167515  0.6648092585  0.6733272620  0.6738105444  1.7142551026  0.6348083264  0.2957892418  0.6348083264  500           0.0350008178 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 120, in accuracy
+    y = y.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C_S
+	checkpoint_freq: None
+	data_dir: ./domainbed/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [0]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	irm_switch: 1.0
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 146, in <module>
+    train_loaders = [InfiniteDataLoader(
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 146, in <listcomp>
+    train_loaders = [InfiniteDataLoader(
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/fast_data_loader.py", line 35, in __init__
+    self._infinite_iterator = iter(torch.utils.data.DataLoader(
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 355, in __iter__
+    return self._get_iterator()
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 301, in _get_iterator
+    return _MultiProcessingDataLoaderIter(self)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 887, in __init__
+    self._worker_result_queue = multiprocessing_context.Queue()  # type: ignore
+  File "/usr/lib/python3.9/multiprocessing/context.py", line 103, in Queue
+    return Queue(maxsize, ctx=self.get_context())
+  File "/usr/lib/python3.9/multiprocessing/queues.py", line 55, in __init__
+    register_after_fork(self, Queue._after_fork)
+  File "/usr/lib/python3.9/multiprocessing/util.py", line 172, in register_after_fork
+    _afterfork_registry[(next(_afterfork_counter), id(obj), func)] = obj
+  File "/usr/lib/python3.9/weakref.py", line 165, in __setitem__
+    self.data[key] = KeyedRef(value, self._remove, key)
+  File "/usr/lib/python3.9/weakref.py", line 345, in __new__
+    def __new__(type, ob, callback, key):
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C_S
+	checkpoint_freq: None
+	data_dir: /hdd/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [0]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	irm_switch: 1.0
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 176, in <module>
+    algorithm = algorithm_class(dataset.input_shape, dataset.num_classes,
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1411, in __init__
+    super(IB_IRM_F_C, self).__init__(input_shape, num_classes, num_domains,
+TypeError: super(type, obj): obj must be an instance or subtype of type
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_C_S
+	checkpoint_freq: None
+	data_dir: /hdd/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [0]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	irm_switch: 1.0
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0313877314  0.0045502535  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  0.0000000000  0.7160798907  0.1945772171  0.7160798907  0             0.0332136154 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 127, in accuracy
+    batch_weights = batch_weights.to(device)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_IRM_F_NC_S
+	checkpoint_freq: None
+	data_dir: /hdd/data/MNIST/
+	dataset: ColoredMNIST
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [0]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 64
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	irm_lambda: 100.0
+	irm_penalty_anneal_iters: 500
+	irm_switch: 1.0
+	lr: 0.001
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+IB_penalty    IRM_penalty   env0_in_acc   env0_out_acc  env1_in_acc   env1_out_acc  env2_in_acc   env2_out_acc  epoch         loss          mem_gb        nll           step          step_time    
+0.0155783072  0.0045502535  0.4972680523  0.4976425204  0.4996517919  0.4952850407  0.4963839931  0.4939991427  0.0000000000  0.7160798907  0.1945772171  0.7160798907  0             0.0314786434 
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 234, in <module>
+    acc = misc.accuracy(algorithm, loader, weights, device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/lib/misc.py", line 121, in accuracy
+    p = network.predict(x)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 109, in predict
+    return self.network(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 147, in forward
+    x = self.conv2(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 399, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 395, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_F_C
+	checkpoint_freq: None
+	data_dir: /hdd/data/
+	dataset: TerraIncognita
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [0]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 32
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 5e-05
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1733, in update
+    all_features = self.featurizer(all_x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 104, in forward
+    return self.dropout(self.network(x))
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 249, in forward
+    return self._forward_impl(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 239, in _forward_impl
+    x = self.layer3(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 132, in forward
+    out = self.conv3(out)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 399, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 395, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: CUDA out of memory. Tried to allocate 74.00 MiB (GPU 0; 7.92 GiB total capacity; 6.43 GiB already allocated; 90.88 MiB free; 6.47 GiB reserved in total by PyTorch)
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_F_C
+	checkpoint_freq: None
+	data_dir: /hdd/data/
+	dataset: TerraIncognita
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [0]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 32
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 5e-05
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+torch.Size([96, 3, 224, 224])
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1733, in update
+    all_features = self.featurizer(all_x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 105, in forward
+    return self.dropout(self.network(x))
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 249, in forward
+    return self._forward_impl(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 239, in _forward_impl
+    x = self.layer3(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 132, in forward
+    out = self.conv3(out)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 399, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 395, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: CUDA out of memory. Tried to allocate 74.00 MiB (GPU 0; 7.92 GiB total capacity; 6.43 GiB already allocated; 86.75 MiB free; 6.47 GiB reserved in total by PyTorch)
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_F_C
+	checkpoint_freq: None
+	data_dir: /hdd/data/
+	dataset: TerraIncognita
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [0]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 32
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 5e-05
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+50
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 176, in <module>
+    algorithm = algorithm_class(dataset.input_shape, dataset.num_classes,
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1714, in __init__
+    super(IB_ERM_F_C, self).__init__(input_shape, num_classes, num_domains,
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 84, in __init__
+    self.featurizer = networks.Featurizer(input_shape, self.hparams)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 194, in Featurizer
+    return ResNet(input_shape, hparams)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 78, in __init__
+    self.network = torchvision.models.resnet50(pretrained=True)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 300, in resnet50
+    return _resnet('resnet50', Bottleneck, [3, 4, 6, 3], pretrained, progress,
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 260, in _resnet
+    model = ResNet(block, layers, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 190, in __init__
+    nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/init.py", line 413, in kaiming_normal_
+    return tensor.normal_(0, std)
+KeyboardInterrupt
+Environment:
+	Python: 3.9.3
+	PyTorch: 1.8.1+cu102
+	Torchvision: 0.9.1+cu102
+	CUDA: 10.2
+	CUDNN: 7605
+	NumPy: 1.20.1
+	PIL: 7.2.0
+Args:
+	algorithm: IB_ERM_F_C
+	checkpoint_freq: None
+	data_dir: /hdd/data/
+	dataset: TerraIncognita
+	holdout_fraction: 0.2
+	hparams: None
+	hparams_seed: 0
+	output_dir: train_output
+	save_model_every_checkpoint: False
+	seed: 0
+	skip_model_save: False
+	steps: None
+	task: domain_generalization
+	test_envs: [0]
+	trial_seed: 0
+	uda_holdout_fraction: 0
+HParams:
+	batch_size: 32
+	class_balanced: False
+	data_augmentation: True
+	ib_lambda: 100.0
+	ib_penalty_anneal_iters: 500
+	lr: 5e-05
+	nonlinear_classifier: False
+	resnet18: False
+	resnet_dropout: 0.0
+	weight_decay: 0.0
+allo
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/scripts/train.py", line 217, in <module>
+    step_vals = algorithm.update(minibatches_device, uda_device)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/algorithms.py", line 1733, in update
+    all_features = self.featurizer(all_x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/Documents/GitRepos/domainbed_ib/domainbed/networks.py", line 104, in forward
+    return self.dropout(self.network(x))
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 249, in forward
+    return self._forward_impl(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 239, in _forward_impl
+    x = self.layer3(x)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 119, in forward
+    input = module(input)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torchvision/models/resnet.py", line 133, in forward
+    out = self.bn3(out)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/modules/batchnorm.py", line 135, in forward
+    return F.batch_norm(
+  File "/home/jcaudet/.local/lib/python3.9/site-packages/torch/nn/functional.py", line 2149, in batch_norm
+    return torch.batch_norm(
+RuntimeError: CUDA out of memory. Tried to allocate 74.00 MiB (GPU 0; 7.92 GiB total capacity; 6.50 GiB already allocated; 91.75 MiB free; 6.54 GiB reserved in total by PyTorch)
